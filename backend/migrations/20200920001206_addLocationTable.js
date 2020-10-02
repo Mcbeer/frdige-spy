@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 exports.up = function (knex) {
 	return Promise.all([
 		knex.schema.createTable('location', (table) => {

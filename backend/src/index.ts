@@ -66,6 +66,7 @@ const createServer = async () => {
 	const [migrationError] = await perhaps(database.migrate.latest());
 
 	if (migrationError) {
+		console.log({ migrationError });
 		throw new Error('Migration failed');
 	}
 	const server = app.listen(port, async () => {

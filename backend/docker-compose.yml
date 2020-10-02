@@ -1,0 +1,35 @@
+# docker-compose.yml
+version: "3"
+services:
+  app:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      NODE_ENV: development
+      PORT: 8000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USERNAME: user
+      DB_PASSWORD: pass
+      DB_DATABASE: db
+      GOOGLE_CLIENT_ID: 682313010343-60fbkmn1h0oqd10khr84b59dvuvsrgmf.apps.googleusercontent.com
+      JWT_TOKEN_SECRET: NVRFPm2-hExWFY@r9y2Ph@c*QBTkMmGpQyNBo4U3fFz2JVPCkx
+      TOKEN_ISSUER: McbeerFridgeSpy
+      ACCESS_TOKEN_EXIPIRATION: 1m
+      COOKIE_DOMAIN: localhost
+    ports:
+      - "8000:8000"
+    command: npm run dev
+    volumes:
+      - .:/app/
+      - /app/node_modules
+
+  postgres:
+    image: postgres:10.4
+    ports:
+      - "35432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: db

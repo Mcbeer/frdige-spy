@@ -1,4 +1,4 @@
-require('dotenv').config();
+/* eslint-disable no-undef */
 
 module.exports = {
 	client: 'pg',

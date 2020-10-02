@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 exports.up = function (knex) {
 	return knex.schema.alterTable('generic_product', (table) => {
 		table.dropColumn('barcodes');

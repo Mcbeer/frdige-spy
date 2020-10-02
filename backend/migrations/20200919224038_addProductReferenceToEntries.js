@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 exports.up = function (knex) {
 	return Promise.all([
 		knex.schema.alterTable('product_entry', (table) => {

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 exports.up = function (knex) {
 	const betterTimestamps = (table) => {
 		table.timestamp('created_at').defaultTo(knex.fn.now());
