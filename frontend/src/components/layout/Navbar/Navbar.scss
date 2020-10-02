@@ -1,0 +1,13 @@
+.Navbar {
+  border-radius: 20px 20px 0 0;
+  background-color: #e5f6f9;
+  box-shadow: 0 -5px 15px 0 rgba(0, 0, 0, 0.2);
+
+  &__list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1rem 0;
+  }
+}

@@ -1,0 +1,11 @@
+.ProductList {
+  border: 1px solid #e5f6f9;
+  border-radius: 6px;
+  height: 0px;
+  overflow: hidden;
+  transition: height 300ms ease-in-out;
+
+  &--expanded {
+    height: auto;
+  }
+}

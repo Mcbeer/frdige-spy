@@ -1,0 +1,30 @@
+@import "./variables.scss";
+
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  font-family: "Montserrat", "Helvetica Neue", "Helvetica";
+  background: linear-gradient(135deg, $white, $secondary-blue);
+  height: 100vh;
+  overflow: auto;
+}
+
+a {
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:visited {
+  color: inherit;
+}
+
+a:hover {
+  color: inherit;
+}
+
+a:active {
+  color: inherit;
+}

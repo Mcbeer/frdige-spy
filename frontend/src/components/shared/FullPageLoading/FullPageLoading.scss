@@ -1,0 +1,15 @@
+.FullPageLoading {
+  &__spinner {
+    animation: spinner 1s infinite linear;
+  }
+}
+
+@keyframes spinner {
+  from {
+    transform: rotateX(0deg);
+  }
+
+  to {
+    transform: rotateX(360deg);
+  }
+}
