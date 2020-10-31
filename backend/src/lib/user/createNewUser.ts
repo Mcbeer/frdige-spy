@@ -15,5 +15,6 @@ const createNewDbUser = (profileObj: GoogleAuthProfileObj): User => {
 		google_id: profileObj.googleId,
 		name: profileObj.name,
 		avatar_url: profileObj.imageUrl,
+		email: profileObj.email,
 	};
 };

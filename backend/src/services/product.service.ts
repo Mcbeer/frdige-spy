@@ -2,15 +2,20 @@
 import { Router } from 'express';
 import { isFinite, toNumber } from 'lodash';
 import { addGenericProduct } from '../lib/product/addGenericProduct';
+import { addProductEntry } from '../lib/product/addProductEntry';
 import { addSpecificProduct } from '../lib/product/addSpecificProduct';
 import { getProducts } from '../lib/product/getProducts';
 import { respond } from '../lib/respond/respond';
-import { PostProduct, PostProductTypes } from '../models/Product.model';
+import {
+	PostProduct,
+	PostProductEntry,
+	PostProductTypes,
+} from '../models/Product.model';
 import { perhaps } from '../utils/perhaps';
 
 const router = Router();
 
-router.get('/', async (req, res, next) => {
+router.get('/', async (req, res) => {
 	const accountIdAsNumber = toNumber(req?.query?.accountId);
 	const locationIdAsNumber = toNumber(req?.query?.locationId);
 
@@ -23,14 +28,13 @@ router.get('/', async (req, res, next) => {
 
 	if (productsError) {
 		console.error(productsError);
-		next(new Error('Could not get to your products at this time.'));
+		respond(res).sendError(productsError);
 	}
 
-	res.json(products);
+	respond(res).sendSuccess(products);
 });
 
 router.post('/', async (req, res, next) => {
-	console.log('Posting new product...');
 	const { body }: { body: PostProduct } = req;
 	switch (body.type) {
 		case PostProductTypes.GENERIC:
@@ -45,12 +49,37 @@ router.post('/', async (req, res, next) => {
 			respond(res).sendSuccess(genericProduct);
 
 			break;
+
 		case PostProductTypes.SPECIFIC:
-			return addSpecificProduct(body);
+			const [specificError, specificProduct] = await perhaps(
+				addSpecificProduct(body)
+			);
+
+			if (specificError) {
+				respond(res).sendError(specificError);
+			}
+
+			respond(res).sendSuccess(specificProduct);
+
+			break;
 
 		default:
 			return next(new Error('Thats not a kind of product?'));
 	}
+});
+
+router.post('/entry', async (req, res) => {
+	const { body }: { body: PostProductEntry } = req;
+
+	const [entryError, productEntry] = await perhaps(
+		addProductEntry({ product_id: body.product_id, amount: body.amount })
+	);
+
+	if (entryError) {
+		respond(res).sendError(entryError);
+	}
+
+	respond(res).sendSuccess(productEntry);
 });
 
 export { router as productService };

@@ -10,7 +10,6 @@ import { StoreModel } from "../../../store/StoreModel";
 import "./LoginForm.scss";
 
 export const LoginForm = () => {
-  console.log(process.env);
   const clientId = process.env.REACT_APP_GOOGLE_CLIENTID || "";
   const history = useHistory();
   const location = useLocation();
@@ -19,10 +18,10 @@ export const LoginForm = () => {
     (state: StoreModel) => state.user.authenticated
   );
 
-  console.log(location);
-
   useEffect(() => {
     if (authenticated) {
+      // @ts-ignore
+      console.log({ referrer: location?.state?.referrer });
       // @ts-ignore
       if (location?.state?.referrer === "/login") {
         history.push("/");
@@ -37,6 +36,7 @@ export const LoginForm = () => {
   });
 
   const handleGoogleLoginResponse = (response: unknown) => {
+    console.log({ response });
     dispatch(authenticate(response));
   };
 

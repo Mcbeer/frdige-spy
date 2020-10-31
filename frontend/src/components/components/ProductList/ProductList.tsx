@@ -17,6 +17,14 @@ export const ProductList = ({ locationId, expanded }: ProductListProps) => {
 
   return (
     <animated.div className={productListStyles.join(" ")}>
+      <div className="ProductList__header">
+        <div className="ProductList__actions"></div>
+        <div className="ProductList__name">
+          Navn
+        </div>
+        <div className="ProductList__amount">Antal</div>
+        <div className="ProductList__actions"></div>
+      </div>
       {products &&
         products.map(({ id, name, amount }) => (
           <ProductListItem id={id} name={name} amount={amount} key={id} />

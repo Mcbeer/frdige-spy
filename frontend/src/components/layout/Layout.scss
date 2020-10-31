@@ -9,11 +9,8 @@
   }
 
   &__body {
-    height: calc(100% - 170px);
+    height: 100%;
     padding: 1rem;
-    border-radius: 20px 20px 0 0;
-    background-color: #e5f6f9;
-    box-shadow: 0 -5px 15px 0 rgba(0, 0, 0, 0.2);
     overflow-y: auto;
 
     &-bottom-padding {

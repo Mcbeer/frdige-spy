@@ -5,7 +5,7 @@ import {
   Redirect,
   Route,
   Switch,
-  useLocation,
+  useLocation
 } from "react-router-dom";
 import "./App.scss";
 import { Layout } from "./components/layout/Layout";
@@ -13,32 +13,39 @@ import { Fridge } from "./components/pages/Fridge/Fridge";
 import { Home } from "./components/pages/Home/Home";
 import { Login } from "./components/pages/Login/Login";
 import { Settings } from "./components/pages/Settings/Settings";
+import { SplashScreen } from "./components/pages/SplashScreen/SplashScreen";
 import { store } from "./store/Store";
 import { StoreModel } from "./store/StoreModel";
 
 export const App = () => {
-  console.log(process.env.REACT_APP_BACKEND_URL);
   return (
     <Router>
-      <div className="App">
-        <Provider store={store}>
-          <Layout>
-            <Switch>
-              <Route path="/login" exact component={Login} />
-              <Route path="/" exact component={Home} />
-              <Route path="/fridge" exact component={Fridge} />
-              {/* <AuthenticatedRoute path="/" exact component={Home} /> */}
-              <AuthenticatedRoute path="/settings" exact component={Settings} />
-              {/* <AuthenticatedRoute path="/fridge" component={Fridge} /> */}
-              {/* <AuthenticatedRoute
+      <Provider store={store}>
+        <Switch>
+          <Route path="/splash" exact component={SplashScreen} />
+          <div className="App">
+            <Layout>
+              <Switch>
+                <Route path="/login" exact component={Login} />
+                <Route path="/" exact component={Home} />
+                <Route path="/fridge" exact component={Fridge} />
+                {/* <AuthenticatedRoute path="/" exact component={Home} /> */}
+                <AuthenticatedRoute
+                  path="/settings"
+                  exact
+                  component={Settings}
+                />
+                {/* <AuthenticatedRoute path="/fridge" component={Fridge} /> */}
+                {/* <AuthenticatedRoute
                 path="/fridge/add"
                 exact
                 component={AddProduct}
               /> */}
-            </Switch>
-          </Layout>
-        </Provider>
-      </div>
+              </Switch>
+            </Layout>
+          </div>
+        </Switch>
+      </Provider>
     </Router>
   );
 };

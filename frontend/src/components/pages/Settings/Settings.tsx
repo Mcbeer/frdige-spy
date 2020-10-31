@@ -1,7 +1,6 @@
 import React from "react";
-import { AccountSettings } from "../../shared/AccountSettings/AccountSettings";
-import { Profile } from "../../shared/Profile/Profile";
-
+import { AccountSettings } from "../../components/AccountSettings/AccountSettings";
+import { Profile } from "../../components/Profile/Profile";
 import "./Settings.scss";
 
 export const Settings = () => {

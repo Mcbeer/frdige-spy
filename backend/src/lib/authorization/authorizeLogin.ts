@@ -3,6 +3,8 @@ import { tableNames } from '../../db/tableNames';
 import { GoogleAuthObj } from '../../models/GoogleAuth.model';
 import { User, UserWithTokens } from '../../models/User.model';
 import { perhaps } from '../../utils/perhaps';
+import { getAccountsById } from '../account/getAccountsById';
+import { getUserAccounts } from '../account/getUserAccount';
 import { createNewUser } from '../user/createNewUser';
 import { generateTokensForUser } from './generateTokensForUser';
 
@@ -25,6 +27,22 @@ export const authorizeLogin = async ({
 	}
 
 	if (userInDb) {
+		const [userAccountsError, userAccounts] = await perhaps(
+			getUserAccounts({ user_id: userInDb.id })
+		);
+
+		if (userAccountsError) {
+			throw userAccountsError;
+		}
+
+		const [accountInfoError, accounts] = await perhaps(
+			getAccountsById({ ids: userAccounts })
+		);
+
+		if (accountInfoError) {
+			throw accountInfoError;
+		}
+
 		const [generateTokensError, tokens] = await perhaps(
 			generateTokensForUser({ id: userInDb.id, googleId: userInDb.google_id })
 		);
@@ -36,7 +54,7 @@ export const authorizeLogin = async ({
 		}
 
 		return {
-			user: userInDb,
+			user: { ...userInDb, accounts },
 			tokens,
 		};
 	} else {

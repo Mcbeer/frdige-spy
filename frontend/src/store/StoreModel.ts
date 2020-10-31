@@ -1,4 +1,5 @@
 import { DefaultRootState } from "react-redux";
+import { Location } from "../models/Location";
 
 export interface StoreModel extends DefaultRootState {
   user: {
@@ -16,6 +17,14 @@ export interface StoreModel extends DefaultRootState {
   };
   account: {
     name: string;
+  };
+  productList: {
+    expandedLocation: number;
+  };
+  location: {
+    locations: Location[];
+    loading: boolean;
+    error: Error | null;
   };
 }
 

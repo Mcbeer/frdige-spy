@@ -1,5 +1,5 @@
 import React from "react";
-import { LatestEvents } from "../../shared/LatestEvents/LatestEvents";
+import { LatestEvents } from "../../components/LatestEvents/LatestEvents";
 import "./Home.scss";
 
 export const Home = () => {

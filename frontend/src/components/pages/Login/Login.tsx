@@ -1,7 +1,7 @@
 import React from "react";
-import { LoginFooter } from "../../shared/LoginFooter/LoginFooter";
-import { LoginForm } from "../../shared/LoginForm/LoginForm";
-import { LoginHeader } from "../../shared/LoginHeader/LoginHeader";
+import { LoginFooter } from "../../components/LoginFooter/LoginFooter";
+import { LoginForm } from "../../components/LoginForm/LoginForm";
+import { LoginHeader } from "../../components/LoginHeader/LoginHeader";
 import "./Login.scss";
 
 export const Login = () => {

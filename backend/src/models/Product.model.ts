@@ -32,9 +32,15 @@ export enum PostProductTypes {
 
 export interface PostProduct {
 	type: PostProductTypes;
+	id: string;
 	name: string;
 	barcode?: string;
 	generic_product_id?: number;
 	accound_id?: number;
-	location_id: number;
+	location_id?: number;
+}
+
+export interface PostProductEntry {
+	product_id: string;
+	amount: number;
 }

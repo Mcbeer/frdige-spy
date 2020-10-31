@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getAccountById } from '../lib/account/getAccountById';
+import { getAccountsById } from '../lib/account/getAccountsById';
 import { perhaps } from '../utils/perhaps';
 
 const router = Router();
@@ -9,7 +9,9 @@ router.get(
 	async (req, res, next): Promise<void> => {
 		const id = parseInt(req.params.id);
 
-		const [accountError, account] = await perhaps(getAccountById({ id }));
+		const [accountError, account] = await perhaps(
+			getAccountsById({ ids: [id] })
+		);
 
 		if (accountError) {
 			next(accountError);

@@ -28,9 +28,11 @@
     padding: 0;
     height: 26px;
     width: 26px;
+    transition: transform 400ms ease-in-out;
+    transform: rotateX(0deg);
 
-    &:active {
-      background-color: rgba(0, 0, 0, 0.4);
+    &--expanded {
+      transform: rotateX(180deg);
     }
   }
 }
